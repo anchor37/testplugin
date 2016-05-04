@@ -1,0 +1,3 @@
+name: Testplugin
+main: com.github.anchor37.Testplugin
+version: 0.0.1
