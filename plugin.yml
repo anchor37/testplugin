@@ -1,0 +1,8 @@
+name: Testplugin
+main: com.github.anchor37.Testplugin.Testplugin
+version: 0.01
+
+commands:
+   cp:
+      description: test command
+      default: all
