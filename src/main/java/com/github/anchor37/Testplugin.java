@@ -119,15 +119,43 @@ public class Testplugin extends JavaPlugin implements Listener {
 	    return false;
 	}
 
-	// 置換実行 空気ブロックしか置き換えません
-	// execute replace. Replace at Material.AIR only.
-	for (int y = (int) biginfill.getY(); y <= (int) endfill.getY(); y++) {
-	    for (int x = (int) biginfill.getX(); x <= (int) endfill.getX(); x++) {
-		for (int z = (int) biginfill.getX(); z <= (int) endfill.getZ(); z++) {
-		    Location location = new Location(world, x, y, z);
-		    Block block = location.getBlock();
-		    if (!block.getType().equals(Material.AIR)) {
-			block.setType(Material.valueOf(args[6]));
+	//
+	execute: {
+	    for (int y = (int) biginfill.getY(); y <= (int) endfill.getY(); y++) {
+		for (int x = (int) biginfill.getX(); x <= (int) endfill.getX(); x++) {
+		    for (int z = (int) biginfill.getX(); z <= (int) endfill.getZ(); z++) {
+			Location location = new Location(world, x, y, z);
+			Block block = location.getBlock();
+			// 空気ブロックのみ置き換え
+			// Replace at Material.AIR only.
+			if (!block.getType().equals(Material.AIR)) {
+			    Boolean bExecute = false;
+			    // 置換を実行して手持ちのアイテムを減らします
+			    // Excute replace and decrease from inventory.
+			    for (ItemStack itemStack : inventory.getContents()) {
+				if (itemStack.getType() == Material.getMaterial(args[6])) {
+				    block.setType(Material.valueOf(args[6]));
+				    itemStack.setAmount(itemStack.getAmount() - 1);
+				    // 個数0になったらスタックを消します
+				    // Remove zero itemstack.
+				    if (itemStack.getAmount() == 0) {
+					inventory.remove(itemStack);
+				    }
+				    bExecute = true;
+				    break;
+				}
+			    }
+			    // 空気ブロックを検知して置換が実行されていない場合は、指定アイテムの手持ちがないとみなします
+			    // 手持ちの指定アイテムがない場合は処理を抜けます
+			    // Where substituent by detecting Material.AIR is
+			    // not running, assumes that there is no hand
+			    // If you do not have a hand in the specified
+			    // items will leaves the processing.
+			    if (bExecute = false) {
+				break execute;
+			    }
+
+			}
 		    }
 		}
 	    }
