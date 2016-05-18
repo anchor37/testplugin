@@ -3,6 +3,9 @@ main: com.github.anchor37.Testplugin.Testplugin
 version: 0.01
 
 commands:
-   cp:
-      description: test command
+   xfil:
+      description: limited fill
+      usage:/xfill x1 y1 z1 x2 y2 z2 <blockid>
+      parmission: Testplugin.basic
+      permission-message: You don't have <permission>
       default: all
