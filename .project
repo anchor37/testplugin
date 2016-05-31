@@ -3,6 +3,7 @@
 	<name>testplugin</name>
 	<comment></comment>
 	<projects>
+		<project>Spigot-API</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

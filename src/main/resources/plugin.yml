@@ -1,3 +1,15 @@
 name: Testplugin
+author: anchor_tama
 main: com.github.anchor37.Testplugin
-version: 0.0.1
+version: 0.0.1-SNAPSHOT
+commands:
+   xfill:
+    description: limited fill
+    usage: /xfill x1 y1 z1 x2 y2 z2 <blockid>
+    parmission: testplugin.basic
+    permission-message: You don't have <permission>
+    aliases: [xf]
+permissions:
+  testplugin.basic:
+    description : No discription.
+    default: true

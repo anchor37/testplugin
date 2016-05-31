@@ -1,0 +1,7 @@
+worlds:
+- world
+disableblocks:
+- '54:0' #chest
+replaceableblocks:
+- '31:1' #grass
+maxdistance: 32
